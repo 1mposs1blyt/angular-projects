@@ -1,0 +1,18 @@
+<app-header />
+<main class="mail-content">
+  <h2>Список карточек</h2>
+  <div class="cards-container">
+    @for (card of cards; track card.id) {
+    <app-card 
+    [title]="card.title" 
+    [desc]="card.desc"
+    (CardDelete)="removeCard(card.id)"
+    >
+    </app-card>
+    }
+    @empty {
+      <p class="">No cards here</p>
+    }
+  </div>
+</main>
+<app-footer/>

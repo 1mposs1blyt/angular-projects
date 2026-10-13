@@ -1,0 +1,8 @@
+<div class="bg-purple-500 m-5">
+  <h3 class="text-3xl text-emerald-500">User's profile</h3>
+  <p class="text-xl text-green-500">User's role: {{role}}</p>
+  <p [ngClass]="isOnline ? 'bg-green-300' : 'bg-red-300'">
+    <!-- className={`${isOnline ? "1" : "2"}`} -->
+    {{isOnline ? 'В сети' : 'Не в сети'}}
+  </p>
+</div>
