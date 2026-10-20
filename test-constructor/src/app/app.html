@@ -1,0 +1,53 @@
+<div class="max-w-4xl mx-auto p-6 font-sans">
+  <h1 class="text-3xl font-bold mb-6 text-slate-800">Hero constructor</h1>
+
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-6 flex flex-wrap gap-4 items-center">
+    <h2 class="text-xl font-bold w-full text-emerald-700">Create hero:</h2>
+
+    <div class="flex items-center gap-2">
+      <label class="text-sm font-medium">Name:</label>
+      <input type="text" class="border-slate-300 border rounded px-2 py-1 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100" [(ngModel)]="currentHero.name" />
+    </div>
+
+    <div class="flex items-center gap-2">
+      <label class="text-sm font-medium">Class:</label>
+      <select [(ngModel)]="currentHero.heroClass" class="border-slate-300 border rounded px-2 py-1 bg-white outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+        <option value="warrior">Warrior</option>
+        <option value="wirzzard">Wirzzard</option>
+        <option value="archer">Archer</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <label class="text-sm font-medium">Level: ({{currentHero.level}}):</label>
+      <input type="range" min="1" max="10" class="accent-emerald-600 cursor-pointer" [(ngModel)]="currentHero.level">
+    </div>
+
+    <div class="flex items-center gap-2">
+      <label class="text-sm font-medium">Power:</label>
+      <select [(ngModel)]="currentHero.power" class="border-slate-300 border rounded px-2 py-1 bg-white outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+        @for (pow of availablePower; track pow) {
+          <option [value]="pow">{{pow}}</option>
+        }
+      </select>
+    </div>
+
+    <label class="flex items-center gap-2 text-sm font-medium cursor-pointer">
+      <input type="checkbox" class="accent-emerald-600" [(ngModel)]="currentHero.isAvailable">
+      Available
+    </label>
+
+    <button (click)="addHero()" class="ml-auto bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-4 py-1.5 rounded transition-colors">Add Hero</button>
+  </div>
+
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+    <h2 class="text-xl font-bold mb-4 text-purple-700">Heroes army:</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      @for (h of heroes; track $index) {
+        <app-hero-card [hero]="h" (onDelete)="removeHero($index)"></app-hero-card>
+      } @empty {
+        <p class="text-slate-500">No heroes yet! Use constructor to create</p>
+      }
+    </div>
+  </div>
+</div>

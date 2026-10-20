@@ -1,0 +1,24 @@
+<div class="border border-slate-200 rounded-xl p-4 bg-white shadow-sm flex flex-col gap-2 relative" [ngClass]="hero.heroClass">
+  <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+    <h3 class="text-lg font-bold text-slate-800">{{hero.name || 'nameless'}}</h3>
+    @if(hero.level > 5){
+      <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-0.5 rounded-full border border-amber-200">Elite</span>
+    }
+  </div>
+  
+  <div class="text-sm text-slate-600 flex flex-col gap-1">
+    <p><b>Class:</b> {{hero.heroClass}}</p>
+    <p><b>Level:</b> {{hero.level}}</p>
+    <p><b>Strength:</b> {{hero.power}}</p>
+  </div>
+  
+  <div class="mt-2 pt-2 border-t border-slate-50 flex justify-between items-center">
+    @if(hero.isAvailable){
+      <p class="text-xs font-semibold px-2 py-1 rounded bg-emerald-50 text-emerald-700">Ready to mission</p>
+    } @else {
+      <p class="text-xs font-semibold px-2 py-1 rounded bg-rose-50 text-rose-700">Busy</p>
+    }
+    
+    <button (click)="deleteHero()" class="text-slate-400 hover:text-rose-600 transition-colors text-sm font-medium">Delete</button>
+  </div>
+</div>
