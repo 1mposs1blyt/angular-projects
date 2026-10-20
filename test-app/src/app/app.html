@@ -1,18 +1,26 @@
 <app-header />
-<main class="mail-content">
+
+<main class="mail-content" [ngStyle]="{'background' : boxColor, 'font-size': isWarning ? '24px' : '14px'}">
+  
+  <input type="text" [(ngModel)]="userName" placeholder="write your name" />
+  
+  <div [ngClass]="{'text-green-500':isActive,'text-red-500':!isActive}">
+    indicator text
+  </div>
+  <button (click)="setIsActive(isActive)">change active</button>
+  @if(userName){
+    <button class="bg-purple-500 px-2 py-4 text-white rounded-xl" (click)="userName=''">clear username!</button>
+  }
+  
   <h2>Список карточек</h2>
   <div class="cards-container">
     @for (card of cards; track card.id) {
-    <app-card 
-    [title]="card.title" 
-    [desc]="card.desc"
-    (CardDelete)="removeCard(card.id)"
-    >
-    </app-card>
+      <app-card [title]="card.title" [desc]="card.desc" (CardDelete)="removeCard(card.id)"></app-card>
     }
     @empty {
       <p class="">No cards here</p>
     }
   </div>
 </main>
-<app-footer/>
+
+<app-footer />
