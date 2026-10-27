@@ -1,0 +1,19 @@
+.catalog-container {
+  padding: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

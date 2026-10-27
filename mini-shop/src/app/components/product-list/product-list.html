@@ -1,1 +1,15 @@
-<p>product-list works!</p>
+<div class="catalog-container">
+  <h2>Goods catalog</h2>
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Search by name..." class="search-input">
+  <div class="grid">
+    @for (product of filteredProducts();track product.id){
+      <app-product-card
+        [product]="product"
+        [isInCart]="isProductInCart(product.id)"
+        (buy)="addToCart($event)"
+      />
+    } @empty {
+      <p>Goods not found :(</p>
+    }
+  </div>
+</div>
