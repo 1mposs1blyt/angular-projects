@@ -1,1 +1,16 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <h2>Корзина</h2>
+  @if (cart().length === 0) {
+    <p>Ваша корзина пуста</p>
+  } @else {
+    <ul class="cart-list">
+      @for (item of cart(); track item.id) {
+        <li class="cart-item">
+          <span>{{ item.name }} — {{ item.price }} ₽</span>
+          <button class="remove-btn" (click)="removeItem(item.id)">Удалить</button>
+        </li>
+      }
+    </ul>
+    <h3>Итого: {{ totalPrice() }} ₽</h3>
+  }
+</div>
