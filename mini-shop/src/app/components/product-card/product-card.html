@@ -1,1 +1,25 @@
-<p>product-card works!</p>
+<div class="card" [ngClass]="{ 'out-of-stock': !product.inStock }">
+  <img [src]="product.image" [alt]="product.name">
+  <h3>{{ product.name }}</h3>
+  <p>{{ product.description }}</p>
+
+  <div class="price-container">
+    @if (product.discount) {
+      <span [ngStyle]="{ 'color': 'red', 'font-weight': 'bold' }">
+        {{ product.price }} ₽
+      </span>
+      <span [ngStyle]="{ 'text-decoration': 'line-through', 'color': 'gray' }">
+        {{ product.oldPrice }} ₽
+      </span>
+    } @else {
+      <span>{{ product.price }} ₽</span>
+    }
+  </div>
+
+  <button 
+    [disabled]="!product.inStock" 
+    [ngClass]="{ 'btn-in-cart': isInCart, 'btn-default': !isInCart }"
+    (click)="onBuyClick()">
+    {{ !product.inStock ? 'Нет в наличии' : (isInCart ? 'В корзине ✓' : 'Купить') }}
+  </button>
+</div>
